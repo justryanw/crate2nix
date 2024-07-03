@@ -19,12 +19,6 @@
     };
   };
 
-  # nixConfig = {
-  #   extra-trusted-public-keys = "justryanw.cachix.org-1:oan1YuatPBqGNFEflzCmB+iwLPtzq1S1LivN3hUzu60=";
-  #   extra-substituters = "https://justryanw.cachix.org";
-  #   allow-import-from-derivation = true;
-  # };
-
   outputs = inputs @ { flake-parts, ... }: flake-parts.lib.mkFlake { inherit inputs; } {
     systems = [
       "x86_64-linux"

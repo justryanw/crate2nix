@@ -1,5 +1,5 @@
 use colored::Colorize;
 
 fn main() {
-   println!("{}", "Hello Nix flake! test".cyan());
+   println!("{}", "Hello Nix flake!".cyan());
 }
