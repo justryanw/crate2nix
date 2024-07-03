@@ -1,6 +1,12 @@
 {
   description = "Rust-Nix";
 
+  nixConfig = {
+    extra-trusted-public-keys = "justryanw.cachix.org-1:oan1YuatPBqGNFEflzCmB+iwLPtzq1S1LivN3hUzu60=";
+    extra-substituters = "https://justryanw.cachix.org";
+    allow-import-from-derivation = true;
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
