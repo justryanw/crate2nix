@@ -19,7 +19,7 @@ jobs:
     name: 'Build'
     environment:
       name: 'Build'
-    runs-on: namespace-profile-default
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
