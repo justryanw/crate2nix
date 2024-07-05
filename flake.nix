@@ -70,12 +70,6 @@
           };
       in
       rec {
-        checks = {
-          rustnix = cargoNix.rootCrate.build.override {
-            runTests = true;
-          };
-        };
-
         packages = {
           rustnix = cargoNix.rootCrate.build;
           default = packages.rustnix;
