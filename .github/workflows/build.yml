@@ -34,4 +34,4 @@ jobs:
         with:
           fail-mode: true
       - name: Build Client
-        run: nix build
+        run: nix build --accept-flake-config
