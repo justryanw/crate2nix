@@ -15,8 +15,6 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    rust-overlay.url = "github:oxalica/rust-overlay";
-
     crate2nix.url = "github:nix-community/crate2nix";
   };
 
@@ -26,10 +24,6 @@
       "aarch64-linux"
       "x86_64-darwin"
       "aarch64-darwin"
-    ];
-
-    imports = [
-      ./nix/rust-overlay/flake-module.nix
     ];
 
     perSystem = { system, pkgs, ... }:
@@ -60,6 +54,8 @@
                 nativeBuildInputs = [ pkgs.makeWrapper ];
 
                 postInstall = ''
+                  rustc --version --verbose
+
                   wrapProgram $out/bin/${name} \
                     --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath buildInputs}
                   mkdir -p $out/bin/assets
@@ -69,24 +65,15 @@
             };
           };
       in
-      rec {
-        packages = {
-          rustnix = cargoNix.rootCrate.build;
-          default = packages.rustnix;
-
-          inherit (pkgs) rust-toolchain;
-
-          rust-toolchain-versions = pkgs.writeScriptBin "rust-toolchain-versions" ''
-            ${pkgs.rust-toolchain}/bin/cargo --version
-            ${pkgs.rust-toolchain}/bin/rustc --version
-          '';
-        };
+      {
+        packages.default = cargoNix.rootCrate.build;
 
         devShells.default = pkgs.mkShell {
           inherit buildInputs;
 
           nativeBuildInputs = with pkgs; [
-            rust-toolchain
+            cargo
+            rustc
             pkg-config
           ];
 

@@ -22,6 +22,6 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
 
 fn rotate(mut query: Query<&mut Transform, With<Sprite>>, time: Res<Time>) {
     for mut bevy in &mut query {
-        bevy.rotate_local_z(-time.delta_seconds());
+        bevy.rotate_local_z(-time.delta_seconds() * 4.0);
     }
 }
