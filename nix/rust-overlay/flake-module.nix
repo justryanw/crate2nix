@@ -2,12 +2,8 @@
 let
   overlays = [
     (import inputs.rust-overlay)
-    (self: super: assert !(super ? rust-toolchain); rec {
+    (self: super: assert !(super ? rust-toolchain); {
       rust-toolchain = super.rust-bin.fromRustupToolchainFile ../../rust-toolchain.toml;
-
-      # buildRustCrate/crate2nix depend on this.
-      rustc = rust-toolchain;
-      cargo = rust-toolchain;
     })
   ];
 in
