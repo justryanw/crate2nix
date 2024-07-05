@@ -40,12 +40,7 @@
 
     perSystem = { system, pkgs, ... }:
       let
-        nativeBuildInputs = (with pkgs; [
-          pkg-config
-          makeWrapper
-          clang
-          mold
-        ]);
+        name = "rustnix";
 
         buildInputs = (with pkgs; [
           libxkbcommon
@@ -60,27 +55,18 @@
           libX11
         ]));
 
-        commonOverride = attrs: {
-          inherit nativeBuildInputs buildInputs;
-        };
-
         cargoNix = pkgs.callPackage
           (crate2nix.tools.${system}.generatedCargoNix {
-            name = "rustnix";
+            inherit name;
             src = ./.;
           })
           {
             defaultCrateOverrides = pkgs.defaultCrateOverrides // {
-              bevy = commonOverride;
-              bevy_winit = commonOverride;
-              winit = commonOverride;
-
-              rustnix = attrs: {
-                nativeBuildInputs = nativeBuildInputs ++ [ pkgs.makeWrapper ];
-                inherit buildInputs;
+              ${name} = attrs: {
+                nativeBuildInputs = [ pkgs.makeWrapper ];
 
                 postInstall = ''
-                  wrapProgram $out/bin/rustnix \
+                  wrapProgram $out/bin/${name} \
                     --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath buildInputs}
                   mkdir -p $out/bin/assets
                   cp -a assets $out/bin
