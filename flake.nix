@@ -40,13 +40,6 @@
 
     perSystem = { system, pkgs, ... }:
       let
-        # If you dislike IFD, you can also generate it with `crate2nix generate` 
-        # on each dependency change and import it here with `import ./Cargo.nix`.
-        # cargoNix = inputs.crate2nix.tools.${system}.appliedCargoNix {
-        #   name = "rustnix";
-        #   src = ./.;
-        # };
-
         cargoNix = pkgs.callPackage (crate2nix.tools.${system}.generatedCargoNix {
           name = "rustnix";
           src = ./.;

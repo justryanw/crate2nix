@@ -1,5 +1,15 @@
-use colored::Colorize;
+use bevy::prelude::*;
 
 fn main() {
-   println!("{}", "Hello Nix flake!".cyan());
+    App::new()
+        .insert_resource(ClearColor(Color::BLACK))
+        .add_plugins(DefaultPlugins)
+        .add_systems(Startup, setup)
+        .run();
+}
+
+fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
+    // Camera
+    commands.spawn(Camera2dBundle::default());
+
 }
