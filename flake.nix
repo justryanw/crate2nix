@@ -18,11 +18,6 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     crate2nix.url = "github:nix-community/crate2nix";
-
-    devshell = {
-      url = "github:numtide/devshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs @ { flake-parts, crate2nix, ... }: flake-parts.lib.mkFlake { inherit inputs; } {
@@ -35,7 +30,6 @@
 
     imports = [
       ./nix/rust-overlay/flake-module.nix
-      ./nix/devshell/flake-module.nix
     ];
 
     perSystem = { system, pkgs, ... }:
@@ -92,6 +86,18 @@
             ${pkgs.rust-toolchain}/bin/cargo --version
             ${pkgs.rust-toolchain}/bin/rustc --version
           '';
+        };
+
+        devShells.default = pkgs.mkShell {
+          inherit buildInputs;
+
+          nativeBuildInputs = with pkgs; [
+            rust-toolchain
+            pkg-config
+          ];
+
+          RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
+          LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath buildInputs}";
         };
       };
   };
