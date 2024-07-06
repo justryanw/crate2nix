@@ -15,7 +15,10 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    crate2nix.url = "github:nix-community/crate2nix";
+    crate2nix = {
+      url = "github:nix-community/crate2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ { flake-parts, crate2nix, ... }: flake-parts.lib.mkFlake { inherit inputs; } {
