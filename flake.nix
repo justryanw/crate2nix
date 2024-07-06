@@ -56,6 +56,11 @@
           })
           {
             defaultCrateOverrides = pkgs.defaultCrateOverrides // {
+              wayland-sys = atts: {
+                nativeBuildInputs = with pkgs; [ pkg-config ];
+                buildInputs = with pkgs; [ wayland ];
+              };
+
               ${name} = attrs: {
                 nativeBuildInputs = [ pkgs.makeWrapper ];
 
@@ -76,7 +81,8 @@
           (final: prev:
             let
               new-pkgs = inputs.nixpkgs-for-rust.legacyPackages.${system};
-            in {
+            in
+            {
               rustc = new-pkgs.rustc;
               cargo = new-pkgs.cargo;
             })
