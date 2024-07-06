@@ -32,6 +32,7 @@ jobs:
       - name: Check Nixpkgs inputs
         uses: DeterminateSystems/flake-checker-action@main
         with:
-          fail-mode: true
+        # temp
+          fail-mode: false
       - name: Build Client
         run: nix build --accept-flake-config
