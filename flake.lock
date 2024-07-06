@@ -609,6 +609,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-for-rust": {
+      "locked": {
+        "lastModified": 1719925721,
+        "narHash": "sha256-eQPC6Y+8NN3lSwe2SeRlZhz6erOauNh67D7rFH974xM=",
+        "owner": "alyssais",
+        "repo": "nixpkgs",
+        "rev": "13c3fe5c9d6102df45d1c169c88c43905ff43603",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alyssais",
+        "ref": "rust-1.79",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1715534503,
@@ -669,12 +685,10 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1712026416,
-        "narHash": "sha256-N/3VR/9e1NlN49p7kCiATiEY6Tzdo+CbrAG8kqCQKcI=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "080a4a27f206d07724b88da096e27ef63401a504",
-        "type": "github"
+        "lastModified": 0,
+        "narHash": "sha256-F/TKWETwB5RaR8owkPPi+SPJh83AQsm6KrQAlJ8v/uA=",
+        "path": "/nix/store/i1aw9jjgxcvyd642s12kw3iasmarwd42-source",
+        "type": "path"
       },
       "original": {
         "id": "nixpkgs",
@@ -683,16 +697,16 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1719925721,
-        "narHash": "sha256-eQPC6Y+8NN3lSwe2SeRlZhz6erOauNh67D7rFH974xM=",
-        "owner": "alyssais",
+        "lastModified": 1720149507,
+        "narHash": "sha256-OFJoD1jjxzFlY1tAsehEWVA88DbU5smzDPQuu9SmnXY=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "13c3fe5c9d6102df45d1c169c88c43905ff43603",
+        "rev": "d9c0b9d611277e42e6db055636ba0409c59db6d2",
         "type": "github"
       },
       "original": {
-        "owner": "alyssais",
-        "ref": "rust-1.79",
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -801,7 +815,8 @@
       "inputs": {
         "crate2nix": "crate2nix",
         "flake-parts": "flake-parts_4",
-        "nixpkgs": "nixpkgs_7"
+        "nixpkgs": "nixpkgs_7",
+        "nixpkgs-for-rust": "nixpkgs-for-rust"
       }
     },
     "systems": {
