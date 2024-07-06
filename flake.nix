@@ -50,6 +50,11 @@
           })
           {
             defaultCrateOverrides = pkgs.defaultCrateOverrides // {
+              wayland-sys = attrs: {
+                nativeBuildInputs = [ pkgs.pkg-config ];
+                buildInputs = [ pkgs.wayland ];
+              };
+
               ${name} = attrs: {
                 nativeBuildInputs = [ pkgs.makeWrapper ];
 
