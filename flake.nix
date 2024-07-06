@@ -76,15 +76,12 @@
             };
           };
 
+        pkgs-for-rust = inputs.nixpkgs-for-rust.legacyPackages.${system};
 
         overlays = [
-          (final: prev:
-            let
-              new-pkgs = inputs.nixpkgs-for-rust.legacyPackages.${system};
-            in
-            {
-              rustc = new-pkgs.rustc;
-              cargo = new-pkgs.cargo;
+          (final: prev: {
+            rustc = pkgs-for-rust.rustc;
+            cargo = pkgs-for-rust.cargo;
             })
         ];
       in
