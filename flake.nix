@@ -8,20 +8,15 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
-    # # TODO remove when 1.79 is merged into nixpkgs
-    nixpkgs-for-rust.url = "github:alyssais/nixpkgs/rust-1.79";
+    # TODO Change back to regular nixpkgs when 1.79 is merged
+    nixpkgs.url = "github:alyssais/nixpkgs/rust-1.79";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    crate2nix = {
-      url = "github:nix-community/crate2nix";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    crate2nix.url = "github:nix-community/crate2nix";
   };
 
   outputs = inputs @ { flake-parts, crate2nix, ... }: flake-parts.lib.mkFlake { inherit inputs; } {
@@ -70,21 +65,8 @@
               };
             };
           };
-
-
-        overlays = [
-          (final: prev:
-            let
-              new-pkgs = inputs.nixpkgs-for-rust.legacyPackages.${system};
-            in {
-              rustc = new-pkgs.rustc;
-              cargo = new-pkgs.cargo;
-            })
-        ];
       in
       {
-        _module.args.pkgs = import inputs.nixpkgs { inherit system overlays; config = { }; };
-
         packages.default = cargoNix.rootCrate.build;
 
         devShells.default = pkgs.mkShell {
