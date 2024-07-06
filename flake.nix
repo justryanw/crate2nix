@@ -8,7 +8,8 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # TODO Change back to regular nixpkgs when 1.79 is merged
+    nixpkgs.url = "github:alyssais/nixpkgs/rust-1.79";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
