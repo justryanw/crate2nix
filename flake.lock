@@ -611,16 +611,16 @@
     },
     "nixpkgs-for-rust": {
       "locked": {
-        "lastModified": 1719925721,
-        "narHash": "sha256-eQPC6Y+8NN3lSwe2SeRlZhz6erOauNh67D7rFH974xM=",
-        "owner": "alyssais",
+        "lastModified": 1720310911,
+        "narHash": "sha256-oAZxXQBjEHQu9lfzF+dpAJihp6M98qfs5iV6vqqfCSE=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "13c3fe5c9d6102df45d1c169c88c43905ff43603",
+        "rev": "e5fadeaa2723122c0ed30f8b937f7a0f6dc134e6",
         "type": "github"
       },
       "original": {
-        "owner": "alyssais",
-        "ref": "rust-1.79",
+        "owner": "NixOS",
+        "ref": "staging",
         "repo": "nixpkgs",
         "type": "github"
       }

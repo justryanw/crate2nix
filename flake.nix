@@ -10,8 +10,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    # # TODO remove when 1.79 is merged into nixpkgs
-    nixpkgs-for-rust.url = "github:alyssais/nixpkgs/rust-1.79";
+    # TODO remove when 1.79 is merged into nixpkgs
+    nixpkgs-for-rust.url = "github:NixOS/nixpkgs/staging";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -20,7 +20,7 @@
 
     crate2nix = {
       url = "github:nix-community/crate2nix";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
