@@ -68,7 +68,8 @@
                   rustc --version --verbose
 
                   wrapProgram $out/bin/${name} \
-                    --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath buildInputs}
+                    --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath buildInputs} \
+                    --prefix XCURSOR_THEME : "Adwaita"
                   mkdir -p $out/bin/assets
                   cp -a assets $out/bin
                 '';
@@ -82,7 +83,7 @@
           (final: prev: {
             rustc = pkgs-for-rust.rustc;
             cargo = pkgs-for-rust.cargo;
-            })
+          })
         ];
       in
       {
@@ -101,6 +102,7 @@
 
           RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
           LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath buildInputs}";
+          XCURSOR_THEME = "Adwaita";
         };
       };
   };
